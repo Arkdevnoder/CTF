@@ -7,13 +7,11 @@
 
 })(function(data){
 
-	this.width = null;
-	this.height = null;
-	this.depth = null;
-	this.geometry = null;
-	this.material = null;
-	this.mesh = null;
-	this.color = null;
+	this.isTouchDevice = function () {
+		return (('ontouchstart' in window) ||
+			(navigator.maxTouchPoints > 0) ||
+			(navigator.msMaxTouchPoints > 0));
+	};
 
 	this.construct = function(params){
 
@@ -27,7 +25,7 @@
 			this.height,
 			this.depth
 		);
-		this.material = new THREE.MeshPhongMaterial(
+		this.material = new THREE.MeshPhysicalMaterial(
 			{
 				color: this.color
 			}
@@ -37,8 +35,17 @@
 			this.material
 		);
 
-		return this;
+		if(!this.isTouchDevice()){
+			this.mesh.castShadow = true;
+			this.mesh.receiveShadow = true;
+		} else {
+			this.mesh.castShadow = false;
+			this.mesh.receiveShadow = false;
+		}
 
 	};
-	return this.construct(data);
+
+	this.construct(data);
+
+	return this;
 });

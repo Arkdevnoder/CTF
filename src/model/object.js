@@ -21,10 +21,6 @@
 		return this;
 	};
 
-	this.construct = function(){
-		return this;
-	};
-
-	return this.construct();
+	return this;
 
 });

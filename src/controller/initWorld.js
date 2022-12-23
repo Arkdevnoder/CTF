@@ -6,10 +6,6 @@
 
 })(function(node){
 
-	this.scene = {};
-	this.camera = {};
-	this.renderer = {};
-
 	this.construct = function(data){
 		this.scene = data.scene;
 		this.camera = data.camera;
@@ -19,73 +15,47 @@
 
 	this.activate = function(){
 
+		var scene = this.scene;
+
+		nf.get("model/chunk/loader", {
+			chunk_x: 0,
+			chunk_z: 0,
+			callback: function(blocks){
+				for (var i = 0; i < blocks.length; i++) {
+					var block = blocks[i];
+					scene.add(block);
+				}
+			}
+		});
+
+		this.camera.position.x = 0;
+		this.camera.position.y = 3;
+		this.camera.position.z = 5;
+
 		this.scene.add(
-			nf.get("model/primitive/rppd", {
-				width: 1,
-				height: 1,
-				depth: 1,
-				color: 0x00ee00,
-			}).setX(5).mesh
+			nf.get("model/lights/directional",{
+				color: 0xaaaaaa,
+				x: 0.3,
+				y: 0.4,
+				z: 0.2
+			}).light
+		);
+		this.scene.add(
+			nf.get("model/lights/point",{
+				color: 0xbbbbbb,
+				x: 5,
+				y: 5,
+				z: 5
+			}).light
 		);
 
 		this.scene.add(
-			nf.get("model/primitive/rppd", {
-				width: 1,
-				height: 1,
-				depth: 1,
-				color: 0x00ee00,
-			}).setY(5).mesh
+			nf.get("model/lights/ambient", {
+				color: 0xcccccc
+			}).light
 		);
 
-		this.scene.add(
-			nf.get("model/primitive/rppd", {
-				width: 1,
-				height: 1,
-				depth: 1,
-				color: 0x00ee00,
-			}).setZ(5).mesh
-		);
-
-		this.scene.add(
-			nf.get("model/primitive/rppd", {
-				width: 1,
-				height: 1,
-				depth: 1,
-				color: 0x00ee00,
-			}).setX(-5).mesh
-		);
-
-		this.scene.add(
-			nf.get("model/primitive/rppd", {
-				width: 1,
-				height: 1,
-				depth: 1,
-				color: 0x00ee00,
-			}).setY(-5).mesh
-		);
-
-		this.scene.add(
-			nf.get("model/primitive/rppd", {
-				width: 1,
-				height: 1,
-				depth: 1,
-				color: 0x00ee00,
-			}).setZ(-5).mesh
-		);
-
-		this.camera.position.x = 4;
-		this.camera.position.y = 1;
-		this.camera.position.z = 12;
-
-		const light2 = new THREE.DirectionalLight( 0xffffff, 1 );
-		light2.position.set( 0.4, 0.3, 0.2 );
-		light2.castShadow = true;
-		this.scene.add(light2);
-
-		const light = new THREE.AmbientLight( 0x404040 ); // soft white light
-		this.scene.add(light);
-
-		const loader = new THREE.CubeTextureLoader();
+		/*const loader = new THREE.CubeTextureLoader();
 		const texture = loader.load([
 			'assets/image/side.png',
 			'assets/image/side.png',
@@ -94,10 +64,14 @@
 			'assets/image/side.png',
 			'assets/image/side.png',
 		]);
-		this.scene.background = texture;
+		this.scene.background = texture;*/
+
+		this.scene.background = new THREE.Color( 0xA6CAF0 );
 
 	};
 
 	this.construct(node);
+
+	return this;
 
 });

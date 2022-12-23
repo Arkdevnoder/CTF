@@ -6,8 +6,6 @@
 
 })(function(node){
 
-	this.camera = {};
-
 	this.construct = function(data){
 		this.camera = data.camera;
 		this.activate();

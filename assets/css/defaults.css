@@ -1,4 +1,190 @@
+html {
+	overflow: hidden;
+}
 body {
 	margin: 0px;
 	overflow: hidden;
+	font-family: arial;
+}
+.controls-left {
+	position: absolute;
+	left: 15px;
+	bottom: 15px;
+	height: 100px;
+	width: 100px;
+	z-index: 1;
+	user-select: none;
+}
+.controls-right {
+	height: 70px;
+	width: 30px;
+	right: 15px;
+	bottom: 15px;
+	position: absolute;
+	z-index: 1;
+	user-select: none;
+}
+.controls-left-in-wrap {
+	height: 100px;
+	width: 100px;
+	position: relative;
+}
+.instructions {
+	height: 100%;
+	width: 100%;
+	background: rgba(0, 0, 0, 0.3);
+	position: absolute;
+	z-index: 2;
+}
+.instructions__text {
+	width: 300px;
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+	color: white;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	margin: auto;
+	position: absolute;
+}
+.controls-left-arrow-up {
+	width: 30px;
+	height: 30px;
+	background: url('../image/arrowUp.png') no-repeat;
+	background-position: center;
+	background-size: cover;
+	position: absolute;
+	margin: auto;
+	top: 0px;
+	right: 0px;
+	left: 0px;
+}
+.controls-left-arrow-right {
+	width: 30px;
+	height: 30px;
+	background: url('../image/arrowRight.png') no-repeat;
+	background-position: center;
+	background-size: cover;
+	position: absolute;
+	margin: auto;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+}
+.controls-left-arrow-left {
+	width: 30px;
+	height: 30px;
+	background: url('../image/arrowLeft.png') no-repeat;
+	background-position: center;
+	background-size: cover;
+	position: absolute;
+	margin: auto;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+}
+.controls-left-arrow-bottom {
+	width: 30px;
+	height: 30px;
+	background: url('../image/arrowBottom.png') no-repeat;
+	background-position: center;
+	background-size: cover;
+	position: absolute;
+	margin: auto;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+}
+.controls-right-in-wrap {
+	height: 70px;
+	width: 30px;
+}
+
+.strike {
+	width: 30px;
+	height: 30px;
+	background: url('../image/strike.png') no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+.arrow {
+	width: 30px;
+	height: 30px;
+	background: url('../image/doubleArrow.png') no-repeat;
+	background-position: center;
+	background-size: cover;
+	margin-top: 10px;
+}
+
+.center {
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	margin: auto;
+	position: absolute;
+	height: 10px;
+	width: 10px;
+}
+.c {
+	height: 10px;
+	width: 10px;
+	position: relative;
+}
+.c-v {
+	height: 10px;
+	width: 2px;
+	background: white;
+	position: absolute;
+	left: 4px;
+}
+.c-h {
+	height: 2px;
+	width: 10px;
+	background: white;
+	position: absolute;
+	top: 4px;
+}
+
+.controls {
+	width: 261px;
+	height: 20px;
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	bottom: 10px;
+	margin: auto;
+}
+
+.controls-point, .controls-blocks {
+	float: left;
+	width: 20px;
+	height: 20px;
+	margin-right: 2px;
+	border: 2px solid white;
+	background: transparent;
+	position: relative;
+}
+.controls-blocks {
+	margin-right: 0px !important;
+}
+.point {
+	width: 10px;
+	height: 10px;
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	bottom: 0px;
+	margin: auto;
+	background: white;
+}
+.controls-blocks {
+	line-height: 20px;
+	text-align: center;
+	font-size: 12px;
+	color: white;
 }

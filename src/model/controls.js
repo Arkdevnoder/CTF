@@ -6,20 +6,18 @@
 
 })(function(node){
 
-	this.camera = {};
-	this.renderer = {};
-
 	this.construct = function(data){
 		this.camera = data.camera;
 		this.renderer = data.renderer;
 		return this.activate();
 	};
 	this.activate = function(){
-		return new THREE.OrbitControls(
+		return new THREE.PointerLockControls(
 			this.camera,
 			this.renderer.domElement
 		);
 	};
 
 	return this.construct(node);
+	
 });
