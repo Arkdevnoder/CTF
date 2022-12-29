@@ -15,3 +15,20 @@ This project is not finished.
 * Map system.
 * Strike system.
 * Block mapping system.
+
+**Demo:**
+
+[Link to website](https://arknet.world/ctf)
+
+**Discussion:**
+
+[Link to chat](https://t.me/+7C9e7tWTu7VmNDJi)
+
+**Libraries:**
+
+* Three js (render)
+* PointerLockControls (Three.js library)
+
+**License:**
+
+MIT
