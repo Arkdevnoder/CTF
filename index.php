@@ -1,4 +1,4 @@
-<!--<?php $vesrionCache = 14; ?>-->
+<!--<?php $vesrionCache = 4; ?>-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,7 +73,7 @@
 		</div>
 	</div>
 	<canvas></canvas>
-	<script src="lib/three.min.js?version=<?php echo $vesrionCache; ?>"></script>
+	<script src="lib/three.js?version=<?php echo $vesrionCache; ?>"></script>
 	<script src="lib/pointer.lock.controls.js?version=<?php echo $vesrionCache; ?>"></script>
 	<script src="lib/name.factory.js?version=<?php echo $vesrionCache; ?>"></script>
 	<script src="src/model/app.js?version=<?php echo $vesrionCache; ?>"></script>

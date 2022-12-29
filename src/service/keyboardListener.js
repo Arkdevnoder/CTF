@@ -8,6 +8,16 @@
 
 	this.construct = function(data){
 
+		this.strikeDuration = 1000;
+
+		this.strikeTimeout = null;
+
+		this.coolDownTimeout = null;
+
+		this.isStrikeAvailable = true;
+
+		this.isNonCoolDown = true;
+
 		this.previousFrame = performance.now();
 
 		this.velocity = 0.05;
@@ -45,6 +55,12 @@
 	this.activate = function(){
 		window.addEventListener('keydown', this.keydown.bind(this), false);
 		window.addEventListener('keyup', this.keyup.bind(this), false);
+
+		document.querySelector(".strike").addEventListener('touchstart', this.strikeStart.bind(this), false);
+		document.querySelector(".strike").addEventListener('touchend', this.strikeEnd.bind(this), false);
+
+		document.querySelector("canvas").addEventListener('mousedown', this.strikeStart.bind(this), false);
+		document.querySelector("canvas").addEventListener('mouseup', this.strikeEnd.bind(this), false);
 
 		document.querySelector(".controls-left-arrow-left").addEventListener('touchstart', this.leftStart.bind(this), false);
 		document.querySelector(".controls-left-arrow-up").addEventListener('touchstart', this.topStart.bind(this), false);
@@ -151,7 +167,7 @@
 
 			this.previousFrame = performance.now();
 			this.listener();
-		}.bind(this), 1000/this.ratio);
+		}.bind(this), 10/this.ratio);
 		
 	}
 	this.topStart = function(){
@@ -220,6 +236,38 @@
 				this.topEnd();
 			break;
 		}
+	};
+
+	this.strike = function() {
+		console.log("Strike");
+	}
+
+	this.strikeStart = function(){
+
+		if(this.isNonCoolDown){
+			this.strike();
+			document.querySelector(".c").classList.add("faded");
+			
+			if(this.isNonCoolDown){
+				this.coolDownTimeout = setTimeout(function(){
+					this.isNonCoolDown = true;
+					document.querySelector(".c").classList.remove("faded");
+				}.bind(this), this.strikeDuration);
+			}
+			this.isNonCoolDown = false;
+		}
+
+
+		this.strikeTimeout = setTimeout(
+			function(){
+				this.strikeStart();
+			}.bind(this),
+			this.strikeDuration
+		);
+	};
+
+	this.strikeEnd = function(){
+		clearTimeout(this.strikeTimeout);
 	};
 
 	this.construct(node);

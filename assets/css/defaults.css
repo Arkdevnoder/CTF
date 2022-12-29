@@ -129,7 +129,11 @@ body {
 	height: 10px;
 	width: 10px;
 }
+.faded {
+	opacity: 0.3;
+}
 .c {
+	transition: 0.2s;
 	height: 10px;
 	width: 10px;
 	position: relative;
@@ -151,12 +155,15 @@ body {
 
 .controls {
 	width: 261px;
-	height: 20px;
 	position: absolute;
 	left: 0px;
 	right: 0px;
-	bottom: 10px;
+	bottom: 5px;
 	margin: auto;
+}
+
+.controls-point:first-child {
+	margin-left: 1.5px;
 }
 
 .controls-point, .controls-blocks {
