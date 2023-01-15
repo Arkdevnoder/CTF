@@ -5,8 +5,6 @@
 	nf.set({'name': name}, data);
 
 })(function(node){
-	this.camera = {};
-	this.renderer = {};
 
 	this.construct = function(data){
 		this.camera = data.camera;

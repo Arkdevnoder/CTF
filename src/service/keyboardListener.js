@@ -8,7 +8,11 @@
 
 	this.construct = function(data){
 
-		this.strikeDuration = 1000;
+		this.isJump = false;
+
+		this.strikeDuration = 500;
+
+		this.buildDuration = 500;
 
 		this.strikeTimeout = null;
 
@@ -20,11 +24,11 @@
 
 		this.previousFrame = performance.now();
 
-		this.velocity = 0.05;
-		this.gravity = 9.8;
+		this.velocity = 0.04;
+		this.gravity = 9.2;
 
-		this.velocity2 = 0.05;
-		this.gravity2 = 9.8;
+		this.velocity2 = 0.04;
+		this.gravity2 = 9.2;
 
 		this.jumpSpeed = 0.073;
 		this.jumpSpeed2 = 0.073;
@@ -47,6 +51,9 @@
 		this._rotationVector = new THREE.Vector3(0, 1, 0);
 
 		this.bumpDetector = nf.get("model/bumpDetector", data);
+
+		this.strikeController = nf.get("controller/initStrike", data);
+		this.shooterService = nf.get("service/shooter", data);
 
 		this._previousPosition = new THREE.Vector3(0, 0, 0);
 
@@ -141,7 +148,7 @@
 				this.camera.position.z+this.resultVector.z
 			),
 			this.scene,
-			this.velocityY
+			this.isJump
 		);
 
 		var position = data[0];
@@ -156,6 +163,7 @@
 		if(!isHover){
 			this.velocityY -= gravityIterator;
 		} else {
+			this.isJump = false;
 			this.velocityY = 0;
 		}
 
@@ -197,7 +205,10 @@
 	};
 
 	this.jump = function(){
-		this.velocityY = this.jumpSpeed2;
+		if(!this.isJump && this.velocityY > -0.1){
+			this.velocityY = this.jumpSpeed2;
+		}
+		this.isJump = true;
 	}
 
 	this.keydown = function(event){
@@ -239,20 +250,43 @@
 	};
 
 	this.strike = function() {
-		console.log("Strike");
+		var isCollided = this.strikeController.strike();
+
+		if(!isCollided){
+			this.shooterService.strike(
+				this.camera.position,
+				node.cameraView.getDirectionVector(),
+			);
+		}
 	}
 
-	this.strikeStart = function(){
+	this.strikeStart = function(event){
+
+		var type = undefined;
+
+		if(event !== undefined){
+			if(event.which !== undefined){
+				if(event.which == 3){
+					type = 3;
+				}
+			}
+		}
 
 		if(this.isNonCoolDown){
-			this.strike();
+			var check = false;
+			if(type == 3){
+				chech = this.strikeController.build(this.bumpDetector.hitbox);
+			} else {
+				check = this.strike();
+			}
+			
 			document.querySelector(".c").classList.add("faded");
 			
 			if(this.isNonCoolDown){
 				this.coolDownTimeout = setTimeout(function(){
 					this.isNonCoolDown = true;
 					document.querySelector(".c").classList.remove("faded");
-				}.bind(this), this.strikeDuration);
+				}.bind(this), type == 3 ? this.buildDuration : this.strikeDuration);
 			}
 			this.isNonCoolDown = false;
 		}
@@ -260,8 +294,8 @@
 
 		this.strikeTimeout = setTimeout(
 			function(){
-				this.strikeStart();
-			}.bind(this),
+				this.strikeStart(event);
+			}.bind(this, event),
 			this.strikeDuration
 		);
 	};

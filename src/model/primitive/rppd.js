@@ -36,8 +36,8 @@
 		);
 
 		if(!this.isTouchDevice()){
-			this.mesh.castShadow = true;
-			this.mesh.receiveShadow = true;
+			this.mesh.castShadow = false;
+			this.mesh.receiveShadow = false;
 		} else {
 			this.mesh.castShadow = false;
 			this.mesh.receiveShadow = false;

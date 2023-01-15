@@ -17,6 +17,12 @@
 		};
 	};
 
+	this.getDirectionVector = function(){
+		return this.camera.getWorldDirection(
+			this.rotationVector
+		);
+	}
+
 	this.getPosition = function(){
 		return this.camera.position;
 	}

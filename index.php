@@ -1,4 +1,4 @@
-<!--<?php $vesrionCache = 4; ?>-->
+<!--<?php $vesrionCache = 2; ?>-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -88,9 +88,12 @@
 	<script src="src/model/chunk/loader.js?version=<?php echo $vesrionCache; ?>"></script>
 	<script src="src/model/primitive/rppd.js?version=<?php echo $vesrionCache; ?>"></script>
 	<script src="src/controller/initWorld.js?version=<?php echo $vesrionCache; ?>"></script>
+	<script src="src/controller/initCamera.js?version=<?php echo $vesrionCache; ?>"></script>
+	<script src="src/controller/initStrike.js?version=<?php echo $vesrionCache; ?>"></script>
 	<script src="src/service/drawScene.js?version=<?php echo $vesrionCache; ?>"></script>
 	<script src="src/service/resizeCanvas.js?version=<?php echo $vesrionCache; ?>"></script>
 	<script src="src/service/keyboardListener.js?version=<?php echo $vesrionCache; ?>"></script>
+	<script src="src/service/shooter.js?version=<?php echo $vesrionCache; ?>"></script>
 	<script src="src/service/network.js?version=<?php echo $vesrionCache; ?>"></script>
 	<script src="src/ctf.js?version=<?php echo $vesrionCache; ?>"></script>
 </body>

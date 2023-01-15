@@ -56,7 +56,7 @@
 
 		for (var i = 0; i < scene.children.length; i++) {
 			var object = scene.children[i];
-			if(object.type == "Mesh"){
+			if(object.type == "Mesh" && object.geometry.type == "BoxGeometry"){
 				if(object.geometry.boundingBox == undefined ||
 					object.geometry.boundingBox == null){
 					object.geometry.computeBoundingBox();

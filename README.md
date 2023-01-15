@@ -16,6 +16,11 @@ This project is not finished.
 * Strike system.
 * Block mapping system.
 
+**Libraries:**
+
+* Three js (render)
+* PointerLockControls (Three.js library)
+
 **Demo:**
 
 [Link to website](https://arknet.world/ctf)
@@ -23,11 +28,6 @@ This project is not finished.
 **Discussion:**
 
 [Link to chat](https://t.me/+7C9e7tWTu7VmNDJi)
-
-**Libraries:**
-
-* Three js (render)
-* PointerLockControls (Three.js library)
 
 **License:**
 
